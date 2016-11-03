@@ -3,11 +3,11 @@ MAINTAINER	technopreneural@yahoo.com
 
 # Create volume for host folder
 # NOTE: use "docker run -v <folder_path>:<volume>..." to bind volume to host folder
-VOLUME		["/var/mysql/data"]
+VOLUME		["/var/www/html"]
 
 # Expose port 80 and 443 (HTTP and HTTPS/SSL) to other containers
 # NOTE: use "docker run -p 80:80 -p 443:443..." to map exposed port(s) to host ports
-EXPOSE 	80
+EXPOSE 	80 443
 
 # Enable (or disable) apt-cache proxy
 #ENV		http_proxy http://acng.robin.dev:3142
@@ -20,6 +20,6 @@ RUN		apt-get update \
 			apache2-utils \
 
 # Fix warnings
-		&& echo "ServerName localhost" >> /etc/apache2/conf-available/servername.conf && a2enconf servername
+		&& echo "ServerName localhost" >> /etc/apache2/conf-available/servername.conf && a2enconf servername \
 
 ENTRYPOINT		["/usr/sbin/apache2ctl", "-D FOREGROUND"]
