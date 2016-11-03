@@ -35,10 +35,10 @@ RUN		apt-get update \
 
 # Install SSL certificate
 		&& sed -i -e "s|/etc/ssl/certs/ssl-cert-snakeoil.pem|/etc/apache2/ssl/apache2.crt|g" /etc/apache2/sites-available/default-ssl.conf \
-		&& sed -i -e "s|/etc/ssl/private/ssl-cert-snakeoil.key|/etc/apache2/ssl/apache2.key|g" /etc/apache2/sites-available/default-ssl.conf
+		&& sed -i -e "s|/etc/ssl/private/ssl-cert-snakeoil.key|/etc/apache2/ssl/apache2.key|g" /etc/apache2/sites-available/default-ssl.conf \
 
 # Enable SSL
 		&& a2enmod ssl \
-		&& a2ensite default-ssl \
+		&& a2ensite default-ssl
 
 ENTRYPOINT		["/usr/sbin/apache2ctl", "-D FOREGROUND"]
