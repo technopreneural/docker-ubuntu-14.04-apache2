@@ -20,6 +20,6 @@ RUN		apt-get update \
 			apache2-utils \
 
 # Fix warnings
-		&& echo "ServerName localhost" >> /etc/apache2/conf-available/servername.conf && a2enconf servername \
+		&& echo "ServerName localhost" >> /etc/apache2/conf-available/servername.conf && a2enconf servername
 
 ENTRYPOINT		["/usr/sbin/apache2ctl", "-D FOREGROUND"]
