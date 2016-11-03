@@ -7,7 +7,7 @@ VOLUME		["/var/mysql/data"]
 
 # Expose port 80 and 443 (HTTP and HTTPS/SSL) to other containers
 # NOTE: use "docker run -p 80:80 -p 443:443..." to map exposed port(s) to host ports
-EXPOSE 	80 443
+EXPOSE 	80
 
 # Enable (or disable) apt-cache proxy
 #ENV		http_proxy http://acng.robin.dev:3142
