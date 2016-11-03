@@ -3,7 +3,7 @@ MAINTAINER	technopreneural@yahoo.com
 
 # Create volume for host folder
 # NOTE: use "docker run -v <folder_path>:<volume>..." to bind volume to host folder
-VOLUME		["/var/www/html"]
+VOLUME		["/var/www/html/", "/var/log/apache2/"]
 
 # Expose port 80 and 443 (HTTP and HTTPS/SSL) to other containers
 # NOTE: use "docker run -p 80:80 -p 443:443..." to map exposed port(s) to host ports
@@ -33,6 +33,8 @@ RUN		apt-get update \
 			-keyout /etc/apache2/ssl/apache2.key \ 
 			-out /etc/apache2/ssl/apache2.crt \
 			-subj "/CN=docker-ubuntu-14.04-apache2" \
+
+# Remove packages to reduce image size
 #		&& apt-get purge openssl \
 #		&& apt-get autoremove --purge \
 
