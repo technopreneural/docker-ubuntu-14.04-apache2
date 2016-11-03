@@ -10,7 +10,7 @@ VOLUME		["/var/mysql/data"]
 EXPOSE 	80 443
 
 # Enable (or disable) apt-cache proxy
-ENV		http_proxy http://acng.robin.dev:3142
+#ENV		http_proxy http://acng.robin.dev:3142
 
 # Install packages
 RUN		apt-get update \
