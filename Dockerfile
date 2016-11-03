@@ -17,9 +17,9 @@ RUN		apt-get update \
 		&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
 			debconf-utils \
 			apache2 \
-			apache2-utils
+			apache2-utils \
 
 # Fix warnings
-RUN		echo "ServerName localhost" >> /etc/apache2/conf-available/servername.conf && a2enconf servername
+		&& echo "ServerName localhost" >> /etc/apache2/conf-available/servername.conf && a2enconf servername
 
 ENTRYPOINT		["/usr/sbin/apache2ctl", "-D FOREGROUND"]
