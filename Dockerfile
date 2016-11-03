@@ -30,8 +30,8 @@ RUN		apt-get update \
 			-nodes \
 			-days 365 \
 			-newkey rsa:2048 \
-			-keyout /etc/apache2/ssl/apache.key \ 
-			-out /etc/apache2/ssl/apache.crt \
+			-keyout /etc/apache2/ssl/apache2.key \ 
+			-out /etc/apache2/ssl/apache2.crt \
 			-subj "/CN=docker-ubuntu-14.04-apache2" \
 #		&& apt-get purge openssl \
 #		&& apt-get autoremove --purge \
