@@ -24,6 +24,7 @@ RUN		apt-get update \
 		&& echo "ServerName localhost" >> /etc/apache2/conf-available/servername.conf && a2enconf servername \
 
 # Create self-signed SSL certificate
+		&& mkdir /etc/apache2/ssl \
 		&& openssl req \
 			-x509 \
 			-nodes \
