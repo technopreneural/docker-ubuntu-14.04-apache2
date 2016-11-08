@@ -44,6 +44,10 @@ RUN		apt-get update \
 
 # Enable SSL
 		&& a2enmod ssl \
-		&& a2ensite default-ssl
+		&& a2ensite default-ssl \
+
+# Enable mod_rewrite
+		&& a2enmod rewrite \
+		&& sed -e '/^<Directory \/var\/www\/>/,/^<\/Directory>/s/\(AllowOverride \)None/\1All/' /etc/apache2/apache2.conf
 
 ENTRYPOINT		["/usr/sbin/apache2ctl", "-D FOREGROUND"]
