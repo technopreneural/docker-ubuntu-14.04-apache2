@@ -20,6 +20,9 @@ RUN		apt-get update \
 			apache2 \
 			apache2-utils \
 
+# Delete downloaded data afterwards to reduce image footprint
+                && rm -rf /var/lib/apt/lists/* \
+
 # Fix warnings
 		&& echo "ServerName localhost" >> /etc/apache2/conf-available/servername.conf && a2enconf servername \
 
