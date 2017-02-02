@@ -51,6 +51,9 @@ RUN		apt-get update \
 
 # Enable mod_rewrite
 		&& a2enmod rewrite \
-		&& sed -i -e '/^<Directory \/var\/www\/>/,/^<\/Directory>/s/\(AllowOverride \)None/\1All/' /etc/apache2/apache2.conf
+		&& sed -i -e '/^<Directory \/var\/www\/>/,/^<\/Directory>/s/\(AllowOverride \)None/\1All/' /etc/apache2/apache2.conf \
+
+# Disable default site
+		&& a2dissite 000-default.conf
 
 ENTRYPOINT		["/usr/sbin/apache2ctl", "-D FOREGROUND"]
