@@ -3,7 +3,7 @@ MAINTAINER	technopreneural@yahoo.com
 
 # Create volume for host folder
 # NOTE: use "docker run -v <folder_path>:<volume>..." to bind volume to host folder
-VOLUME		["/var/www/html/", "/var/log/apache2/","/etc/apache2/sites-available"]
+VOLUME		["/var/www/html/", "/var/log/apache2/","/etc/apache2/sites-enabled"]
 
 # Expose port 80 and 443 (HTTP and HTTPS/SSL) to other containers
 # NOTE: use "docker run -p 80:80 -p 443:443..." to map exposed port(s) to host ports
