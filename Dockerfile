@@ -47,7 +47,6 @@ RUN		apt-get update \
 
 # Enable SSL
 		&& a2enmod ssl \
-		&& a2ensite default-ssl \
 
 # Enable mod_rewrite
 		&& a2enmod rewrite \
