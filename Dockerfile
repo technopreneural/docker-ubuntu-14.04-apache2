@@ -1,14 +1,6 @@
 FROM		ubuntu:14.04
 MAINTAINER	technopreneural@yahoo.com
 
-# Create volume for host folder
-# NOTE: use "docker run -v <folder_path>:<volume>..." to bind volume to host folder
-VOLUME		["/var/www/html", "/var/log/apache2","/etc/apache2"]
-
-# Expose port 80 and 443 (HTTP and HTTPS/SSL) to other containers
-# NOTE: use "docker run -p 80:80 -p 443:443..." to map exposed port(s) to host ports
-EXPOSE		80 443 
-
 # Enable (or disable) apt-cache proxy
 #ENV		http_proxy http://acng.robin.dev:3142
 
@@ -52,9 +44,18 @@ RUN			apt-get update \
 			&& a2enmod rewrite \
 			&& sed -i -e '/^<Directory \/var\/www\/>/,/^<\/Directory>/s/\(AllowOverride \)None/\1All/' /etc/apache2/apache2.conf \
 
-# Disable default site
-			&& a2dissite 000-default.conf
+# Disable default site(s)
+			&& a2dissite 000-default \
+			&& a2dissite default-ssl 
 
-COPY		./apache2-entrypoint.sh /usr/local/bin/apache2-entrypoint.sh
+COPY		./apache2-entrypoint.sh /
 
-ENTRYPOINT	["/usr/sbin/apache2ctl", "-D FOREGROUND"]
+ENTRYPOINT	["/apache2-entrypoint.sh"]
+
+# Create volume for host folder
+# NOTE: use "docker run -v <folder_path>:<volume>..." to bind volume to host folder
+VOLUME		["/var/www/html", "/var/log/apache2"]]
+
+# Expose port 80 and 443 (HTTP and HTTPS/SSL) to other containers
+# NOTE: use "docker run -p 80:80 -p 443:443..." to map exposed port(s) to host ports
+EXPOSE		80 443 
